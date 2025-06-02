@@ -19,7 +19,7 @@ public class Member {
     private Long id;
 
     @Column(name = "loginId", unique = true, nullable = false)
-    private String loginId;
+    private String email;
 
     @Column(unique = true, nullable = false)
     private String nickname;
@@ -39,8 +39,9 @@ public class Member {
 
 
     @Builder
-    public Member(String loginId, String password, Authority authority){
-        this.loginId = loginId;
+    public Member(String email, String nickname, String password, Authority authority) {
+        this.email = email;
+        this.nickname = nickname;
         this.password = password;
         this.authority = authority;
     }
