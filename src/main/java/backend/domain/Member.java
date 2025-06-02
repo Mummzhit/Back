@@ -1,13 +1,16 @@
 package backend.domain;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "member")
 public class Member {
 
@@ -30,4 +33,19 @@ public class Member {
     @CreationTimestamp
     @Column(name = "createdAt", updatable = false, nullable = false)
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+
+
+    @Builder
+    public Member(String loginId, String password){
+        this.loginId = loginId;
+        this.password = password;
+    }
+
+    //Authority
+    public enum Authority{
+        ROLE_USER, ROLE_ADMIN
+    }
 }
