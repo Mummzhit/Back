@@ -23,3 +23,4 @@ spring:
 
 
 jwt:
+  secret: m8Tsr9W3LBbldtgOx4Rck8Y/9X2YhJyhjjAQoIk+8Xw7koVHQUJ4Q/Xavogn9xJEsiZYRgcrkj3ouvuT+S/BDA==
