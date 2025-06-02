@@ -39,13 +39,9 @@ public class Member {
 
 
     @Builder
-    public Member(String loginId, String password){
+    public Member(String loginId, String password, Authority authority){
         this.loginId = loginId;
         this.password = password;
-    }
-
-    //Authority
-    public enum Authority{
-        ROLE_USER, ROLE_ADMIN
+        this.authority = authority;
     }
 }
