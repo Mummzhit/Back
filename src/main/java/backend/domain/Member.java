@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Table(name = "user")
-public class User {
+@Table(name = "member")
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
