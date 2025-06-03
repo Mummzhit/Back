@@ -9,6 +9,7 @@ import backend.dto.TokenRequestDto;
 import backend.jwt.TokenProvider;
 import backend.repository.MemberRepository;
 import backend.repository.RefreshTokenRepository;
+import backend.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -88,5 +89,14 @@ public class AuthService {
 
         // 토큰 발급
         return tokenDto;
+    }
+
+    //로그아웃: 현재 SecurityContext에 담긴 memberId를 가져와, 해당 키로 DB의 RefreshToken을 삭제
+    @Transactional
+    public void logout(){
+        Long currentMemberId = SecurityUtil.getCurrentMemberId();
+        //key가 String이라 toString()
+        refreshTokenRepository.findByKey(currentMemberId.toString())
+                .ifPresent(refreshTokenRepository::delete); //DB에 해당 키 존재하면 refresh token 제거
     }
 }
