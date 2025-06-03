@@ -8,9 +8,9 @@ spring:
 
   datasource: # DB ??
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mummzhit
-    username: kyoohyun
-    password: 3993
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -23,4 +23,4 @@ spring:
 
 
 jwt:
-  secret: m8Tsr9W3LBbldtgOx4Rck8Y/9X2YhJyhjjAQoIk+8Xw7koVHQUJ4Q/Xavogn9xJEsiZYRgcrkj3ouvuT+S/BDA==
+  secret: ${JWT_SECRET}
