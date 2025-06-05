@@ -54,6 +54,9 @@ public class EmotionController {
         return ResponseEntity.ok(dtos);
     }
 
+    //PathVariable로 입력
+    //GET: localhost:8080/api/emotions/2025-06-05
+    //위와 같은 형태로 입력되어야 함
     @GetMapping("/{date}")
     public ResponseEntity<?> getEmotionByDate(@PathVariable("date") String dateStr) {
         LocalDate parsedDate;
