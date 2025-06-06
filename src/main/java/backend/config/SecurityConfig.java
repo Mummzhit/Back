@@ -62,7 +62,11 @@ public class SecurityConfig {
 
                 // 6) 요청별 권한 설정
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("api/auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/signup.html",
+                                "/login.html"
+                                ).permitAll()
                         .anyRequest().authenticated()
                 );
 
