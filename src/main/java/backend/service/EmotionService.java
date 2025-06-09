@@ -35,6 +35,7 @@ public class EmotionService {
         LocalDate today = LocalDate.now();
 
         //하루 한번만 기록
+        //repository 에 findByMemberAndDay 추가
         emotionRecordRepository.findByMemberAndDay(member, today)
                 .ifPresent(record -> {
                     throw new RuntimeException("이미 오늘 감정을 기록했습니다.");
@@ -45,6 +46,7 @@ public class EmotionService {
         emotionRecordRepository.save(newRecord);
     }
 
+    //일주일치 감정기록 리턴
     @Transactional(readOnly = true)
     public List<EmotionRecordResponseDto> getLast7DaysEmotions() {
         Long memberId = SecurityUtil.getCurrentMemberId();
