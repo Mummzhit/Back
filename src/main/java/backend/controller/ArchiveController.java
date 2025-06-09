@@ -3,9 +3,7 @@ package backend.controller;
 import backend.dto.ArchiveRequestDto;
 import backend.dto.ArchiveResponseDto;
 import backend.service.ArchiveService;
-import backend.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +24,8 @@ public class ArchiveController {
      * 1) 오늘의 활동 기록 추가
      *    POST /api/archives/today
      *    Body: {
-     *      "startTime": "09:30",
-     *      "endTime":   "10:45",
+     *      "startTime": "09:30 AM",
+     *      "endTime":   "10:45 AM",
      *      "category":  "Read book",
      *      "content":   "book name..."
      *    }
