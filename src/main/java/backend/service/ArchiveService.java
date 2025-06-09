@@ -36,8 +36,8 @@ public class ArchiveService {
         Archive arch = Archive.builder()
                 .member(member)
                 .date(today)
-                .startTime(req.getStartTime())
-                .endTime(req.getEndTime())
+                .startTime(req.parseStartTime())
+                .endTime(req.parseEndTime())
                 .category(req.getCategory())
                 .content(req.getContent())
                 .build();
