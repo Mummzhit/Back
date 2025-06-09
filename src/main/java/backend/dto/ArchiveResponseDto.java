@@ -8,7 +8,6 @@ import java.time.LocalTime;
 
 @Getter
 public class ArchiveResponseDto {
-
     private LocalDate date;        // 기록 날짜
     private LocalTime startTime;   // 시작 시간
     private LocalTime endTime;     // 종료 시간

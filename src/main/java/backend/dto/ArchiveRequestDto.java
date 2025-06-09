@@ -13,7 +13,6 @@ public class ArchiveRequestDto {
 
     @NotNull
     private LocalTime startTime;
-
     @NotNull
     private LocalTime endTime;
 
