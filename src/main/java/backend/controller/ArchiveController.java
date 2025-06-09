@@ -64,6 +64,7 @@ public class ArchiveController {
         }
 
         List<ArchiveResponseDto> list = archiveService.getArchivesByDate(date);
+
         if (list.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
