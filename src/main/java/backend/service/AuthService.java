@@ -3,6 +3,8 @@ package backend.service;
 import backend.domain.Member;
 import backend.domain.RefreshToken;
 import backend.dto.*;
+import backend.exception.EmailExistsException;
+import backend.exception.NicknameExistsException;
 import backend.jwt.TokenProvider;
 import backend.repository.MemberRepository;
 import backend.repository.RefreshTokenRepository;
@@ -27,11 +29,13 @@ public class AuthService {
     @Transactional
     public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
         if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다");
+            throw new EmailExistsException();
         }
-
-        Member member = memberRequestDto.toMember(passwordEncoder);
-        return MemberResponseDto.of(memberRepository.save(member));
+        if (memberRepository.existsByNickname(memberRequestDto.getNickname())) {
+            throw new NicknameExistsException();
+        }
+        Member m = memberRequestDto.toMember(passwordEncoder);
+        return MemberResponseDto.of(memberRepository.save(m));
     }
 
     @Transactional
