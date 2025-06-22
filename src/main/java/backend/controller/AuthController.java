@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.domain.Member;
 import backend.dto.*;
 import backend.service.AuthService;
 import jakarta.validation.Valid;
@@ -9,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.parameters.P;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -51,5 +49,10 @@ public class AuthController {
     public ResponseEntity<Void> logout(){
         authService.logout();
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<MemberResponseDto> profile(){
+        return ResponseEntity.ok(authService.getMyProfile());
     }
 }
