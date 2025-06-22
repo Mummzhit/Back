@@ -7,6 +7,7 @@ import backend.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -62,9 +63,21 @@ public class SecurityConfig {
 
                 // 6) 요청별 권한 설정
                 .authorizeHttpRequests(auth -> auth
+                        // ① 정적 리소스
                         .requestMatchers(
-                                "/api/auth/**"
+                                "/signup.html",
+                                "/login.html"
                         ).permitAll()
+
+                        // ② 인증 없이 허용할 API
+                        .requestMatchers(
+                                "/api/auth/signup",
+                                "/api/auth/login",
+                                "/api/auth/reissue",
+                                "/api/auth/logout"
+                        ).permitAll()
+
+                        // ③ 그 외 모든 요청(여기엔 /api/auth/profile 포함) 은 인증 필요
                         .anyRequest().authenticated()
                 );
 
