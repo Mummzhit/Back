@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,5 +100,16 @@ public class AuthService {
         //key가 String이라 toString()
         refreshTokenRepository.findByKey(currentMemberId.toString())
                 .ifPresent(refreshTokenRepository::delete); //DB에 해당 키 존재하면 refresh token 제거
+    }
+
+    // 유저 정보 조회
+    public MemberResponseDto getMyProfile(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Long memberId = Long.parseLong(auth.getName());
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+
+        return MemberResponseDto.of(member);
     }
 }
