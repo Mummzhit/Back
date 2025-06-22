@@ -73,8 +73,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/signup",
                                 "/api/auth/login",
-                                "/api/auth/reissue",
-                                "/api/auth/logout"
+                                "/api/auth/reissue"
                         ).permitAll()
 
                         // ③ 그 외 모든 요청(여기엔 /api/auth/profile 포함) 은 인증 필요
