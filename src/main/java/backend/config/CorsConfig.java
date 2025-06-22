@@ -16,8 +16,8 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOriginPattern("*");  // ← 와일드카드 허용
-        config.addAllowedOrigin("*");
+        // FE: http://localhost:3001 접근 허용.
+        config.setAllowedOriginPatterns(List.of("http://localhost:3001"));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
